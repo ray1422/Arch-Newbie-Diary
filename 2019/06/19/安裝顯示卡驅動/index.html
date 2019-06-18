@@ -22,7 +22,7 @@
 <meta property="og:site_name" content="Arch Linux 的萌新日記">
 <meta property="og:description" content="安裝Nvidia顯示卡驅動">
 <meta property="og:locale" content="zh-Hant-TW">
-<meta property="og:updated_time" content="2019-06-18T22:47:30.422Z">
+<meta property="og:updated_time" content="2019-06-18T23:19:26.726Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安裝顯示卡驅動">
 <meta name="twitter:description" content="安裝Nvidia顯示卡驅動">
@@ -292,16 +292,18 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>由於開源驅動充滿了問題，所以你需要安裝NV自家的閉源驅動。</p>
+        <iframe src="https://www.youtube-nocookie.com/embed/IVpOyKCNZYw?start=105&autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>由於開源驅動充滿了問題，所以你需要安裝NV自家的閉源驅動。</p>
 <h2 id="禁用開源驅動"><a href="#禁用開源驅動" class="headerlink" title="禁用開源驅動"></a>禁用開源驅動</h2><p>編輯 <code>/etc/modprobe.d/blacklist-nouveau.conf</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">blacklist nouveau</span><br><span class="line">options nouveau modeset=0</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">blacklist nouveau</span><br><span class="line">blacklist rivafb</span><br><span class="line">blacklist nvidiafb</span><br><span class="line">blacklist rivatv</span><br><span class="line">blacklist nv</span><br><span class="line">blacklist uvcvideo</span><br></pre></td></tr></table></figure>
 
 <p>更新</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkinitcpio -p linux</span><br></pre></td></tr></table></figure>
 
-<h2 id="nvidia驅動"><a href="#nvidia驅動" class="headerlink" title="nvidia驅動"></a>nvidia驅動</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -S nvidia</span><br></pre></td></tr></table></figure>
+<h2 id="Nvidia驅動"><a href="#Nvidia驅動" class="headerlink" title="Nvidia驅動"></a>Nvidia驅動</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -S nvidia</span><br></pre></td></tr></table></figure>
 
-<h2 id="CUDA"><a href="#CUDA" class="headerlink" title="CUDA"></a>CUDA</h2><p>由於之後想稿TensorFlow，所以順便裝了CUDA。不需要的可以跳過。</p>
+<h2 id="CUDA"><a href="#CUDA" class="headerlink" title="CUDA"></a>CUDA</h2><p>由於之後想搞TensorFlow，所以順便裝了CUDA。不需要的可以跳過。</p>
 <p>另外這屬於編譯安裝，花費約2小時。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay cuda-10.0</span><br></pre></td></tr></table></figure>
 
@@ -326,7 +328,7 @@
         <p><span>本文標題:</span><a href="/Arch-Newbie-Diary/2019/06/19/安裝顯示卡驅動/">安裝顯示卡驅動</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主頁">Ray1422</a></p>
         <p><span>發布時間:</span>2019-06-19, 06:30:00</p>
-        <p><span>最後更新:</span>2019-06-19, 06:47:30</p>
+        <p><span>最後更新:</span>2019-06-19, 07:19:26</p>
         <p>
             <span>原始鏈接:</span><a class="post-url" href="/Arch-Newbie-Diary/2019/06/19/安裝顯示卡驅動/" title="安裝顯示卡驅動">https://ray1422.github.io/Arch-Newbie-Diary/2019/06/19/安裝顯示卡驅動/</a>
             <span class="copy-path" data-clipboard-text="原文: https://ray1422.github.io/Arch-Newbie-Diary/2019/06/19/安裝顯示卡驅動/　　作者: Ray1422" title="點擊複製文章鏈接"><i class="fa fa-clipboard"></i></span>
@@ -362,7 +364,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目錄</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#禁用開源驅動"><span class="toc-number">1.</span> <span class="toc-text">禁用開源驅動</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nvidia驅動"><span class="toc-number">2.</span> <span class="toc-text">nvidia驅動</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CUDA"><span class="toc-number">3.</span> <span class="toc-text">CUDA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#測試"><span class="toc-number">4.</span> <span class="toc-text">測試</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解決畫面撕裂"><span class="toc-number">5.</span> <span class="toc-text">解決畫面撕裂</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#禁用開源驅動"><span class="toc-number">1.</span> <span class="toc-text">禁用開源驅動</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nvidia驅動"><span class="toc-number">2.</span> <span class="toc-text">Nvidia驅動</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CUDA"><span class="toc-number">3.</span> <span class="toc-text">CUDA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#測試"><span class="toc-number">4.</span> <span class="toc-text">測試</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解決畫面撕裂"><span class="toc-number">5.</span> <span class="toc-text">解決畫面撕裂</span></a></li></ol>
         
     </div>
     <style>
