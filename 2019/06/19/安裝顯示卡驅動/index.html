@@ -15,13 +15,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Arch Linux 的萌新日記">
-<meta property="og:url" content="https://ray1422.github.io/Arch-Newbie-Diary/archives/2019/06/index.html">
+<meta name="description" content="安裝Nvidia顯示卡驅動">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安裝顯示卡驅動">
+<meta property="og:url" content="https://ray1422.github.io/Arch-Newbie-Diary/2019/06/19/安裝顯示卡驅動/index.html">
 <meta property="og:site_name" content="Arch Linux 的萌新日記">
+<meta property="og:description" content="安裝Nvidia顯示卡驅動">
 <meta property="og:locale" content="zh-Hant-TW">
+<meta property="og:updated_time" content="2019-06-18T22:47:30.422Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Arch Linux 的萌新日記">
+<meta name="twitter:title" content="安裝顯示卡驅動">
+<meta name="twitter:description" content="安裝Nvidia顯示卡驅動">
 
 <link rel="apple-touch-icon" href="/Arch-Newbie-Diary//apple-touch-icon.png">
 
@@ -53,7 +57,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Archives: 2019/6 | Arch Linux 的萌新日記</title>
+<title>安裝顯示卡驅動 | Arch Linux 的萌新日記</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -63,8 +67,8 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
-        isArchive: true,
+        isPost: true,
+        isArchive: false,
         isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
@@ -252,110 +256,190 @@
     <link class="menu-list" tags="標籤" friends="友情鏈接" about="關於我"/>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-安裝顯示卡驅動" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/Arch-Newbie-Diary/2019/06/19/安裝顯示卡驅動/" class="article-date">
+      <time datetime="2019-06-18T22:30:00.000Z" itemprop="datePublished">2019-06-19</time>
+</a>
+
+
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      安裝顯示卡驅動
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/Arch-Newbie-Diary/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/Arch-Newbie-Diary/2019/06/19/安裝圖形界面/" class="archive-article-date">
-      <time datetime="2019-06-18T22:32:05.000Z" itemprop="datePublished">06-19</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Arch-Newbie-Diary/2019/06/19/安裝圖形界面/">安裝圖形界面</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
+    <div class="article-entry" itemprop="articleBody">
+      
           
+        <p>由於開源驅動充滿了問題，所以你需要安裝NV自家的閉源驅動。</p>
+<h2 id="禁用開源驅動"><a href="#禁用開源驅動" class="headerlink" title="禁用開源驅動"></a>禁用開源驅動</h2><p>編輯 <code>/etc/modprobe.d/blacklist-nouveau.conf</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">blacklist nouveau</span><br><span class="line">options nouveau modeset=0</span><br></pre></td></tr></table></figure>
 
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<p>更新</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkinitcpio -p linux</span><br></pre></td></tr></table></figure>
+
+<h2 id="nvidia驅動"><a href="#nvidia驅動" class="headerlink" title="nvidia驅動"></a>nvidia驅動</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -S nvidia</span><br></pre></td></tr></table></figure>
+
+<h2 id="CUDA"><a href="#CUDA" class="headerlink" title="CUDA"></a>CUDA</h2><p>由於之後想稿TensorFlow，所以順便裝了CUDA。不需要的可以跳過。</p>
+<p>另外這屬於編譯安裝，花費約2小時。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay cuda-10.0</span><br></pre></td></tr></table></figure>
+
+<h2 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-smi</span><br></pre></td></tr></table></figure>
+
+<h2 id="解決畫面撕裂"><a href="#解決畫面撕裂" class="headerlink" title="解決畫面撕裂"></a>解決畫面撕裂</h2><p>編輯 <code>/etc/modprobe.d/nvidia-graphics-drivers.conf</code></p>
+<p>加入以下行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">options nvidia_drm modeset=2</span><br></pre></td></tr></table></figure>
+
+<p>接下來打這個更新</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkinitcpio -p linux</span><br></pre></td></tr></table></figure>
+
+<p>重起後即可。</p>
+
+      
+    </div>
+    
   </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文標題:</span><a href="/Arch-Newbie-Diary/2019/06/19/安裝顯示卡驅動/">安裝顯示卡驅動</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主頁">Ray1422</a></p>
+        <p><span>發布時間:</span>2019-06-19, 06:30:00</p>
+        <p><span>最後更新:</span>2019-06-19, 06:47:30</p>
+        <p>
+            <span>原始鏈接:</span><a class="post-url" href="/Arch-Newbie-Diary/2019/06/19/安裝顯示卡驅動/" title="安裝顯示卡驅動">https://ray1422.github.io/Arch-Newbie-Diary/2019/06/19/安裝顯示卡驅動/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://ray1422.github.io/Arch-Newbie-Diary/2019/06/19/安裝顯示卡驅動/　　作者: Ray1422" title="點擊複製文章鏈接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>許可協議:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"姓名標示-非商業性-相同方式分享 4.0 國際"</a> 轉載請保留原文鏈接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/Arch-Newbie-Diary/2019/06/19/安裝圖形界面/">
+                    安裝圖形界面
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/Arch-Newbie-Diary/2019/06/19/都是從這裡開始的吧/">
+                    都是從這裡開始的吧
+                </a>
+            </div>
+        
+    </nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/Arch-Newbie-Diary/2019/06/19/安裝顯示卡驅動/" class="archive-article-date">
-      <time datetime="2019-06-18T22:30:00.000Z" itemprop="datePublished">06-19</time>
-</a>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目錄</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#禁用開源驅動"><span class="toc-number">1.</span> <span class="toc-text">禁用開源驅動</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nvidia驅動"><span class="toc-number">2.</span> <span class="toc-text">nvidia驅動</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CUDA"><span class="toc-number">3.</span> <span class="toc-text">CUDA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#測試"><span class="toc-number">4.</span> <span class="toc-text">測試</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解決畫面撕裂"><span class="toc-number">5.</span> <span class="toc-text">解決畫面撕裂</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隱藏目錄"  title="點擊按鈕隱藏或者顯示文章目錄">
+
+    <script>
+        yiliaConfig.toc = ["隱藏目錄", "顯示目錄", !!"false"];
+    </script>
 
 
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
         </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Arch-Newbie-Diary/2019/06/19/安裝顯示卡驅動/">安裝顯示卡驅動</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"安裝顯示卡驅動　| Arch Linux 的萌新日記　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
     
+
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/Arch-Newbie-Diary/2019/06/19/都是從這裡開始的吧/" class="archive-article-date">
-      <time datetime="2019-06-18T20:53:27.000Z" itemprop="datePublished">06-19</time>
-</a>
+</div>
 
 
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Arch-Newbie-Diary/2019/06/19/都是從這裡開始的吧/">都是從這裡開始的吧</a>
-    </h1>
-  
 
-        <div class="article-info info-on-archive">
-          
 
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+
+
 
     
 
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/Arch-Newbie-Diary/2019/06/19/安裝圖形界面/" title="上一篇: 安裝圖形界面">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/Arch-Newbie-Diary/2019/06/19/都是從這裡開始的吧/" title="下一篇: 都是從這裡開始的吧">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/Arch-Newbie-Diary/2019/06/19/安裝圖形界面/">安裝圖形界面</a></li><li class="post-list-item"><a class="post-list-link" href="/Arch-Newbie-Diary/2019/06/19/安裝顯示卡驅動/">安裝顯示卡驅動</a></li><li class="post-list-item"><a class="post-list-link" href="/Arch-Newbie-Diary/2019/06/19/都是從這裡開始的吧/">都是從這裡開始的吧</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">

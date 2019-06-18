@@ -22,7 +22,7 @@
 <meta property="og:site_name" content="Arch Linux 的萌新日記">
 <meta property="og:description" content="從零開始安裝Arch Linux">
 <meta property="og:locale" content="zh-Hant-TW">
-<meta property="og:updated_time" content="2019-06-18T22:18:09.408Z">
+<meta property="og:updated_time" content="2019-06-18T22:35:21.518Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="都是從這裡開始的吧">
 <meta name="twitter:description" content="從零開始安裝Arch Linux">
@@ -345,6 +345,21 @@
 
 <h3 id="grub"><a href="#grub" class="headerlink" title="grub"></a>grub</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub</span><br><span class="line">grub-mkconfig -o /boot/grub/grub.cfg</span><br></pre></td></tr></table></figure>
 
+<h2 id="新增使用者"><a href="#新增使用者" class="headerlink" title="新增使用者"></a>新增使用者</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd &lt;USERNAME&gt; -G wheel <span class="comment"># 給予sudo</span></span><br></pre></td></tr></table></figure>
+
+<p>編輯sudoer</p>
+<p><code>visudo</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%wheel ALL=(ALL) ALL</span><br></pre></td></tr></table></figure>
+
+<h2 id="安裝基本套件"><a href="#安裝基本套件" class="headerlink" title="安裝基本套件"></a>安裝基本套件</h2><p>安裝git 以及aur，有aur才有靈魂。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -S git</span><br></pre></td></tr></table></figure>
+
+<p>接下來切換到正常的使用者（不是root）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su &lt;USERNAME&gt;</span><br></pre></td></tr></table></figure>
+
+<p>安裝yay</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://aur.archlinux.org/yay.git</span><br><span class="line"><span class="built_in">cd</span> yay</span><br><span class="line">makepkg -si</span><br></pre></td></tr></table></figure>
+
 <p>到這裡就差不多了。</p>
 <h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p> <a href="https://blog.allenchou.cc/arch-linux-tutorial/" target="_blank" rel="noopener">https://blog.allenchou.cc/arch-linux-tutorial/</a></p>
 
@@ -358,7 +373,7 @@
         <p><span>本文標題:</span><a href="/Arch-Newbie-Diary/2019/06/19/都是從這裡開始的吧/">都是從這裡開始的吧</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主頁">Ray1422</a></p>
         <p><span>發布時間:</span>2019-06-19, 04:53:27</p>
-        <p><span>最後更新:</span>2019-06-19, 06:18:09</p>
+        <p><span>最後更新:</span>2019-06-19, 06:35:21</p>
         <p>
             <span>原始鏈接:</span><a class="post-url" href="/Arch-Newbie-Diary/2019/06/19/都是從這裡開始的吧/" title="都是從這裡開始的吧">https://ray1422.github.io/Arch-Newbie-Diary/2019/06/19/都是從這裡開始的吧/</a>
             <span class="copy-path" data-clipboard-text="原文: https://ray1422.github.io/Arch-Newbie-Diary/2019/06/19/都是從這裡開始的吧/　　作者: Ray1422" title="點擊複製文章鏈接"><i class="fa fa-clipboard"></i></span>
@@ -371,13 +386,24 @@
 
 
 
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/Arch-Newbie-Diary/2019/06/19/安裝顯示卡驅動/">
+                    安裝顯示卡驅動
+                </a>
+            </div>
+        
+        
+    </nav>
+
   
 </article>
 
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目錄</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#開始安裝Arch-Linux"><span class="toc-number">1.</span> <span class="toc-text">開始安裝Arch Linux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#製作開機隨身碟"><span class="toc-number">2.</span> <span class="toc-text">製作開機隨身碟</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#連上無限網路"><span class="toc-number">3.</span> <span class="toc-text">連上無限網路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#切磁區"><span class="toc-number">4.</span> <span class="toc-text">切磁區</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#格式化"><span class="toc-number">4.1.</span> <span class="toc-text">格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#掛載"><span class="toc-number">4.2.</span> <span class="toc-text">掛載</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝"><span class="toc-number">5.</span> <span class="toc-text">安裝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#建立fstab"><span class="toc-number">6.</span> <span class="toc-text">建立fstab</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#切換目錄至新系統"><span class="toc-number">7.</span> <span class="toc-text">切換目錄至新系統</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝vim"><span class="toc-number">8.</span> <span class="toc-text">安裝vim</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝網路工具"><span class="toc-number">9.</span> <span class="toc-text">安裝網路工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#本地化設定"><span class="toc-number">10.</span> <span class="toc-text">本地化設定</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#時區"><span class="toc-number">10.1.</span> <span class="toc-text">時區</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#語言"><span class="toc-number">10.2.</span> <span class="toc-text">語言</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#設定電腦名稱"><span class="toc-number">11.</span> <span class="toc-text">設定電腦名稱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#開機相關"><span class="toc-number">12.</span> <span class="toc-text">開機相關</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mkinitcpio"><span class="toc-number">12.1.</span> <span class="toc-text">mkinitcpio</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他操作系統"><span class="toc-number">12.2.</span> <span class="toc-text">其他操作系統</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#grub"><span class="toc-number">12.3.</span> <span class="toc-text">grub</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#參考資料"><span class="toc-number">13.</span> <span class="toc-text">參考資料</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#開始安裝Arch-Linux"><span class="toc-number">1.</span> <span class="toc-text">開始安裝Arch Linux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#製作開機隨身碟"><span class="toc-number">2.</span> <span class="toc-text">製作開機隨身碟</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#連上無限網路"><span class="toc-number">3.</span> <span class="toc-text">連上無限網路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#切磁區"><span class="toc-number">4.</span> <span class="toc-text">切磁區</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#格式化"><span class="toc-number">4.1.</span> <span class="toc-text">格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#掛載"><span class="toc-number">4.2.</span> <span class="toc-text">掛載</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝"><span class="toc-number">5.</span> <span class="toc-text">安裝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#建立fstab"><span class="toc-number">6.</span> <span class="toc-text">建立fstab</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#切換目錄至新系統"><span class="toc-number">7.</span> <span class="toc-text">切換目錄至新系統</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝vim"><span class="toc-number">8.</span> <span class="toc-text">安裝vim</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝網路工具"><span class="toc-number">9.</span> <span class="toc-text">安裝網路工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#本地化設定"><span class="toc-number">10.</span> <span class="toc-text">本地化設定</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#時區"><span class="toc-number">10.1.</span> <span class="toc-text">時區</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#語言"><span class="toc-number">10.2.</span> <span class="toc-text">語言</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#設定電腦名稱"><span class="toc-number">11.</span> <span class="toc-text">設定電腦名稱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#開機相關"><span class="toc-number">12.</span> <span class="toc-text">開機相關</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mkinitcpio"><span class="toc-number">12.1.</span> <span class="toc-text">mkinitcpio</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他操作系統"><span class="toc-number">12.2.</span> <span class="toc-text">其他操作系統</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#grub"><span class="toc-number">12.3.</span> <span class="toc-text">grub</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新增使用者"><span class="toc-number">13.</span> <span class="toc-text">新增使用者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝基本套件"><span class="toc-number">14.</span> <span class="toc-text">安裝基本套件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#參考資料"><span class="toc-number">15.</span> <span class="toc-text">參考資料</span></a></li></ol>
         
     </div>
     <style>
@@ -433,7 +459,9 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主頁"><i class="fa fa-home"></i></a>
+            <a href="/Arch-Newbie-Diary/2019/06/19/安裝顯示卡驅動/" title="上一篇: 安裝顯示卡驅動">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
@@ -443,7 +471,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/Arch-Newbie-Diary/2019/06/19/都是從這裡開始的吧/">都是從這裡開始的吧</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/Arch-Newbie-Diary/2019/06/19/安裝圖形界面/">安裝圖形界面</a></li><li class="post-list-item"><a class="post-list-link" href="/Arch-Newbie-Diary/2019/06/19/安裝顯示卡驅動/">安裝顯示卡驅動</a></li><li class="post-list-item"><a class="post-list-link" href="/Arch-Newbie-Diary/2019/06/19/都是從這裡開始的吧/">都是從這裡開始的吧</a></li></ul>
 
 
 

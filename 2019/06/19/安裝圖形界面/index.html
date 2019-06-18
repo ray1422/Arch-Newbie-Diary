@@ -15,13 +15,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Arch Linux 的萌新日記">
-<meta property="og:url" content="https://ray1422.github.io/Arch-Newbie-Diary/archives/2019/06/index.html">
+<meta name="description" content="安裝Nvidia顯示卡驅動">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安裝圖形界面">
+<meta property="og:url" content="https://ray1422.github.io/Arch-Newbie-Diary/2019/06/19/安裝圖形界面/index.html">
 <meta property="og:site_name" content="Arch Linux 的萌新日記">
+<meta property="og:description" content="安裝Nvidia顯示卡驅動">
 <meta property="og:locale" content="zh-Hant-TW">
+<meta property="og:updated_time" content="2019-06-18T23:00:45.360Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Arch Linux 的萌新日記">
+<meta name="twitter:title" content="安裝圖形界面">
+<meta name="twitter:description" content="安裝Nvidia顯示卡驅動">
 
 <link rel="apple-touch-icon" href="/Arch-Newbie-Diary//apple-touch-icon.png">
 
@@ -53,7 +57,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Archives: 2019/6 | Arch Linux 的萌新日記</title>
+<title>安裝圖形界面 | Arch Linux 的萌新日記</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -63,8 +67,8 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
-        isArchive: true,
+        isPost: true,
+        isArchive: false,
         isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
@@ -252,110 +256,184 @@
     <link class="menu-list" tags="標籤" friends="友情鏈接" about="關於我"/>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-安裝圖形界面" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/Arch-Newbie-Diary/2019/06/19/安裝圖形界面/" class="article-date">
+      <time datetime="2019-06-18T22:32:05.000Z" itemprop="datePublished">2019-06-19</time>
+</a>
+
+
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      安裝圖形界面
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/Arch-Newbie-Diary/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/Arch-Newbie-Diary/2019/06/19/安裝圖形界面/" class="archive-article-date">
-      <time datetime="2019-06-18T22:32:05.000Z" itemprop="datePublished">06-19</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Arch-Newbie-Diary/2019/06/19/安裝圖形界面/">安裝圖形界面</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
+    <div class="article-entry" itemprop="articleBody">
+      
           
+        <p>這個部份我選擇了gdm + gnome，想省電的可以考慮lightdm + xfce。</p>
+<h2 id="安裝套件"><a href="#安裝套件" class="headerlink" title="安裝套件"></a>安裝套件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S xorg gnome gnome-extra gdm</span><br></pre></td></tr></table></figure>
 
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<h2 id="配置顯卡"><a href="#配置顯卡" class="headerlink" title="配置顯卡"></a>配置顯卡</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lspci | grep -E <span class="string">"VGA|3D"</span></span><br></pre></td></tr></table></figure>
+
+<p>編輯 <code>/etc/X11/xorg.conf</code></p>
+<p>添加以下內容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Section <span class="string">"Module"</span></span><br><span class="line">    Load <span class="string">"modesetting"</span></span><br><span class="line">EndSection</span><br><span class="line"> </span><br><span class="line">Section <span class="string">"Device"</span></span><br><span class="line">    Identifier <span class="string">"nvidia"</span></span><br><span class="line">    Driver <span class="string">"nvidia"</span></span><br><span class="line">    BusID <span class="string">"PCI:1:0:0"</span></span><br><span class="line">    Option <span class="string">"AllowEmptyInitialConfiguration"</span></span><br><span class="line">EndSection</span><br></pre></td></tr></table></figure>
+
+<p>編輯以下文件 <code>/etc/X11/xorg.conf.d/20-intel.conf</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Section <span class="string">"Device"</span></span><br><span class="line">    Identifier <span class="string">"intel"</span></span><br><span class="line">    Driver <span class="string">"modesetting"</span></span><br><span class="line">    BusID <span class="string">"PCI:0:2:0"</span></span><br><span class="line">EndSection</span><br></pre></td></tr></table></figure>
+
+<p>然後貌似要在開始時執行下面這些，但是我忘記是哪裡了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xrandr --setprovideroutputsource modesetting NVIDIA-0 </span><br><span class="line">xrandr --auto</span><br></pre></td></tr></table></figure>
+
+<p>gdm似乎是要在下面兩個檔案加上這些</p>
+<p><code>/usr/share/gdm/greeter/autostart/optimus.desktop</code></p>
+<p><code>/etc/xdg/autostart/optimus.desktop</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[Desktop Entry]</span><br><span class="line">Type=Application</span><br><span class="line">Name=Optimus</span><br><span class="line">Exec=sh -c <span class="string">"xrandr --setprovideroutputsource modesetting NVIDIA-0; xrandr --auto"</span></span><br><span class="line">NoDisplay=<span class="literal">true</span></span><br><span class="line">X-GNOME-Autostart-Phase=DisplayServer</span><br></pre></td></tr></table></figure>
+
+<p>（請參考<a href="https://wiki.archlinux.org/index.php/NVIDIA_Optimus_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#GDM" target="_blank" rel="noopener">ArchWiKi</a>）</p>
+<p>然後啟用gdm</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> gdm</span><br></pre></td></tr></table></figure>
+
+<p>沒意外的話重起應該就行了。</p>
+
+      
+    </div>
+    
   </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文標題:</span><a href="/Arch-Newbie-Diary/2019/06/19/安裝圖形界面/">安裝圖形界面</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主頁">Ray1422</a></p>
+        <p><span>發布時間:</span>2019-06-19, 06:32:05</p>
+        <p><span>最後更新:</span>2019-06-19, 07:00:45</p>
+        <p>
+            <span>原始鏈接:</span><a class="post-url" href="/Arch-Newbie-Diary/2019/06/19/安裝圖形界面/" title="安裝圖形界面">https://ray1422.github.io/Arch-Newbie-Diary/2019/06/19/安裝圖形界面/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://ray1422.github.io/Arch-Newbie-Diary/2019/06/19/安裝圖形界面/　　作者: Ray1422" title="點擊複製文章鏈接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>許可協議:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"姓名標示-非商業性-相同方式分享 4.0 國際"</a> 轉載請保留原文鏈接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/Arch-Newbie-Diary/2019/06/19/安裝顯示卡驅動/">
+                    安裝顯示卡驅動
+                </a>
+            </div>
+        
+    </nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/Arch-Newbie-Diary/2019/06/19/安裝顯示卡驅動/" class="archive-article-date">
-      <time datetime="2019-06-18T22:30:00.000Z" itemprop="datePublished">06-19</time>
-</a>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目錄</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝套件"><span class="toc-number">1.</span> <span class="toc-text">安裝套件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置顯卡"><span class="toc-number">2.</span> <span class="toc-text">配置顯卡</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隱藏目錄"  title="點擊按鈕隱藏或者顯示文章目錄">
+
+    <script>
+        yiliaConfig.toc = ["隱藏目錄", "顯示目錄", !!"false"];
+    </script>
 
 
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
         </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Arch-Newbie-Diary/2019/06/19/安裝顯示卡驅動/">安裝顯示卡驅動</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"安裝圖形界面　| Arch Linux 的萌新日記　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
     
+
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/Arch-Newbie-Diary/2019/06/19/都是從這裡開始的吧/" class="archive-article-date">
-      <time datetime="2019-06-18T20:53:27.000Z" itemprop="datePublished">06-19</time>
-</a>
+</div>
 
 
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Arch-Newbie-Diary/2019/06/19/都是從這裡開始的吧/">都是從這裡開始的吧</a>
-    </h1>
-  
 
-        <div class="article-info info-on-archive">
-          
 
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+
+
 
     
 
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主頁"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/Arch-Newbie-Diary/2019/06/19/安裝顯示卡驅動/" title="下一篇: 安裝顯示卡驅動">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/Arch-Newbie-Diary/2019/06/19/安裝圖形界面/">安裝圖形界面</a></li><li class="post-list-item"><a class="post-list-link" href="/Arch-Newbie-Diary/2019/06/19/安裝顯示卡驅動/">安裝顯示卡驅動</a></li><li class="post-list-item"><a class="post-list-link" href="/Arch-Newbie-Diary/2019/06/19/都是從這裡開始的吧/">都是從這裡開始的吧</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
