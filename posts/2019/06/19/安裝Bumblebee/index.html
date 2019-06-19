@@ -24,7 +24,7 @@
 <meta property="og:description" content="安裝Bumblebee，實現核顯與集成顯卡切換">
 <meta property="og:locale" content="zh-Hant-TW">
 <meta property="og:image" content="https://ray1422.github.io/home/ray1422/workspace/Arch-Newbie-Diary/source/uploads/1560959775321.png">
-<meta property="og:updated_time" content="2019-06-19T16:15:04.796Z">
+<meta property="og:updated_time" content="2019-06-19T18:02:40.369Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安裝Bumblebee">
 <meta name="twitter:description" content="安裝Bumblebee，實現核顯與集成顯卡切換">
@@ -315,7 +315,7 @@
 
 <h3 id="開啟服務"><a href="#開啟服務" class="headerlink" title="開啟服務"></a>開啟服務</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> nvidia-enable.service</span><br></pre></td></tr></table></figure>
 
-<h3 id="配置bbswitch"><a href="#配置bbswitch" class="headerlink" title="配置bbswitch"></a>配置bbswitch</h3><p><code>/etc/modprobe.d/bbswitch.conf</code></p>
+<h3 id="配置-bbswitch"><a href="#配置-bbswitch" class="headerlink" title="配置 bbswitch"></a>配置 bbswitch</h3><p><code>/etc/modprobe.d/bbswitch.conf</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">options bbswitch load_state=0 unload_state=1</span><br></pre></td></tr></table></figure>
 
 <p>到這裡應該就差不多了。</p>
@@ -346,7 +346,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目錄</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝必要套件"><span class="toc-number">1.</span> <span class="toc-text">安裝必要套件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number">2.</span> <span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#測試"><span class="toc-number">2.1.</span> <span class="toc-text">測試</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置啟動參數"><span class="toc-number">2.2.</span> <span class="toc-text">配置啟動參數</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#開啟服務"><span class="toc-number">2.3.</span> <span class="toc-text">開啟服務</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置bbswitch"><span class="toc-number">2.4.</span> <span class="toc-text">配置bbswitch</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝必要套件"><span class="toc-number">1.</span> <span class="toc-text">安裝必要套件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number">2.</span> <span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#測試"><span class="toc-number">2.1.</span> <span class="toc-text">測試</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置啟動參數"><span class="toc-number">2.2.</span> <span class="toc-text">配置啟動參數</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#開啟服務"><span class="toc-number">2.3.</span> <span class="toc-text">開啟服務</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置-bbswitch"><span class="toc-number">2.4.</span> <span class="toc-text">配置 bbswitch</span></a></li></ol></li></ol>
         
     </div>
     <style>
