@@ -1,3 +1,4 @@
+
 define([], function(){
     var _isShow = false;
     var $tag, $aboutme, $friends;
@@ -6,6 +7,7 @@ define([], function(){
 
     //第一步 -- 初始化
     var reset = function() {
+	return;
         //设定窗口比率
         radio = document.body.scrollHeight/document.body.scrollWidth;
         //设定一页的宽度
@@ -27,6 +29,7 @@ define([], function(){
     }
     //第三步 -- 根据数据渲染DOM
     var renderDOM = function(){
+	return;
         //生成节点
         var $viewer = document.createElement("div");
         $viewer.id = "viewer";
@@ -56,6 +59,7 @@ define([], function(){
     };
 
     var show = function(target, idx){
+	return;
         document.getElementById("viewer").className = "";
         setTimeout(function(){
             basicwrap.className = "anm-swipe";
@@ -69,6 +73,7 @@ define([], function(){
     }
 
     var hide = function(){
+	return;
         document.getElementById("viewer-box").className = "";
         _isShow = false;
         document.ontouchstart=function(){
@@ -78,6 +83,7 @@ define([], function(){
 
     //第四步 -- 绑定 DOM 事件
     var bindDOM = function(){
+	return;
         var scaleW = scaleW;
         
         //滑动隐藏
@@ -152,3 +158,4 @@ define([], function(){
         }
     }
 })
+
