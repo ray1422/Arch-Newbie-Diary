@@ -23,10 +23,12 @@
 <meta property="og:site_name" content="Ray 的 Arch Linux 萌新日記">
 <meta property="og:description" content="安裝Bumblebee，實現核顯與集成顯卡切換">
 <meta property="og:locale" content="zh-Hant-TW">
-<meta property="og:updated_time" content="2019-06-19T15:44:45.970Z">
+<meta property="og:image" content="https://ray1422.github.io/home/ray1422/workspace/Arch-Newbie-Diary/source/uploads/1560959775321.png">
+<meta property="og:updated_time" content="2019-06-19T16:15:04.796Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安裝Bumblebee">
 <meta name="twitter:description" content="安裝Bumblebee，實現核顯與集成顯卡切換">
+<meta name="twitter:image" content="https://ray1422.github.io/home/ray1422/workspace/Arch-Newbie-Diary/source/uploads/1560959775321.png">
 
 <link rel="apple-touch-icon" href="/Arch-Newbie-Diary//apple-touch-icon.png">
 
@@ -294,11 +296,29 @@
       
           
         <p>這東西很坑人，建議先備份系統。</p>
-<h2 id="安裝必要套件"><a href="#安裝必要套件" class="headerlink" title="安裝必要套件"></a>安裝必要套件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S timeshift</span><br></pre></td></tr></table></figure>
+<h2 id="安裝必要套件"><a href="#安裝必要套件" class="headerlink" title="安裝必要套件"></a>安裝必要套件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S bumblebee mesa bbswitch</span><br></pre></td></tr></table></figure>
 
-<h2 id="完成"><a href="#完成" class="headerlink" title="完成"></a>完成</h2><p>然後就都是圖形化界面了，這應該不用教吧？</p>
-<h2 id="從文字界面復原"><a href="#從文字界面復原" class="headerlink" title="從文字界面復原"></a>從文字界面復原</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo timeshift --restore</span><br></pre></td></tr></table></figure>
+<p>安裝集成顯卡驅動（<strong>必須要安裝</strong>）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S xf86-video-intel</span><br></pre></td></tr></table></figure>
 
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>將自己加入群組</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gpasswd -a &lt;USERNAME&gt; bumblebee</span><br></pre></td></tr></table></figure>
+
+<h3 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h3><p>先安裝<code>mesa-demo</code></p>
+<p>然後運行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">optirun glxgears -info</span><br></pre></td></tr></table></figure>
+
+<p>如果有個窗口彈出來在辣邊轉啊轉就是成功了</p>
+<p><img src="/home/ray1422/workspace/Arch-Newbie-Diary/source/uploads/1560959775321.png" alt="1560959775321"></p>
+<h3 id="配置啟動參數"><a href="#配置啟動參數" class="headerlink" title="配置啟動參數"></a>配置啟動參數</h3><p>因為某些不可知的原因，會導致開不了機，所以要加上啟動參數。在啟動參數加上以下內容（我直接使用grub customizer）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acpi_osi=! acpi_osi=<span class="string">'Windows 2009'</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="開啟服務"><a href="#開啟服務" class="headerlink" title="開啟服務"></a>開啟服務</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> nvidia-enable.service</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置bbswitch"><a href="#配置bbswitch" class="headerlink" title="配置bbswitch"></a>配置bbswitch</h3><p><code>/etc/modprobe.d/bbswitch.conf</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">options bbswitch load_state=0 unload_state=1</span><br></pre></td></tr></table></figure>
+
+<p>到這裡應該就差不多了。</p>
 
       
     </div>
@@ -326,7 +346,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目錄</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝必要套件"><span class="toc-number">1.</span> <span class="toc-text">安裝必要套件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#完成"><span class="toc-number">2.</span> <span class="toc-text">完成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#從文字界面復原"><span class="toc-number">3.</span> <span class="toc-text">從文字界面復原</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝必要套件"><span class="toc-number">1.</span> <span class="toc-text">安裝必要套件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number">2.</span> <span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#測試"><span class="toc-number">2.1.</span> <span class="toc-text">測試</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置啟動參數"><span class="toc-number">2.2.</span> <span class="toc-text">配置啟動參數</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#開啟服務"><span class="toc-number">2.3.</span> <span class="toc-text">開啟服務</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置bbswitch"><span class="toc-number">2.4.</span> <span class="toc-text">配置bbswitch</span></a></li></ol></li></ol>
         
     </div>
     <style>
