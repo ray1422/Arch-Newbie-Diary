@@ -15,18 +15,18 @@
 
 
 
-<meta name="description" content="安裝圖形界面">
-<meta name="keywords" content="基礎">
+<meta name="description" content="使用ncdu查詢系統大文件">
+<meta name="keywords" content="基礎安裝">
 <meta property="og:type" content="article">
-<meta property="og:title" content="安裝圖形界面">
-<meta property="og:url" content="https://ray1422.github.io/Arch-Newbie-Diary/posts/2019/06/19/安裝圖形界面/index.html">
+<meta property="og:title" content="查詢系統大文件">
+<meta property="og:url" content="https://ray1422.github.io/Arch-Newbie-Diary/posts/2019/07/03/查詢系統大文件/index.html">
 <meta property="og:site_name" content="Ray 的 Arch Linux 萌新日記">
-<meta property="og:description" content="安裝圖形界面">
+<meta property="og:description" content="使用ncdu查詢系統大文件">
 <meta property="og:locale" content="zh-Hant-TW">
-<meta property="og:updated_time" content="2019-06-20T21:09:18.915Z">
+<meta property="og:updated_time" content="2019-07-03T01:43:55.331Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="安裝圖形界面">
-<meta name="twitter:description" content="安裝圖形界面">
+<meta name="twitter:title" content="查詢系統大文件">
+<meta name="twitter:description" content="使用ncdu查詢系統大文件">
 
 <link rel="apple-touch-icon" href="/Arch-Newbie-Diary//apple-touch-icon.png">
 
@@ -58,7 +58,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>安裝圖形界面 | Ray 的 Arch Linux 萌新日記</title>
+<title>查詢系統大文件 | Ray 的 Arch Linux 萌新日記</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.10/clipboard.js"></script>
@@ -253,11 +253,11 @@
     <link class="menu-list" tags="標籤" friends="友情鏈接" about="關於我"/>
 </nav>
 
-      <div class="body-wrap"><article id="post-安裝圖形界面" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-查詢系統大文件" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/Arch-Newbie-Diary/posts/2019/06/19/安裝圖形界面/" class="article-date">
-      <time datetime="2019-06-18T22:32:05.000Z" itemprop="datePublished">2019-06-19</time>
+      <a href="/Arch-Newbie-Diary/posts/2019/07/03/查詢系統大文件/" class="article-date">
+      <time datetime="2019-07-03T01:53:27.000Z" itemprop="datePublished">2019-07-03</time>
 </a>
 
 
@@ -272,7 +272,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      安裝圖形界面
+      查詢系統大文件
     </h1>
   
 
@@ -283,7 +283,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Arch-Newbie-Diary/tags/基礎/">基礎</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Arch-Newbie-Diary/tags/基礎安裝/">基礎安裝</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -293,31 +293,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>這個部份我選擇了gdm + gnome，想省電的可以考慮lightdm + xfce。</p>
-<h2 id="安裝套件"><a href="#安裝套件" class="headerlink" title="安裝套件"></a>安裝套件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S xorg gnome gnome-extra gdm</span><br></pre></td></tr></table></figure>
-
-<h2 id="配置顯卡"><a href="#配置顯卡" class="headerlink" title="配置顯卡"></a>配置顯卡</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lspci | grep -E <span class="string">"VGA|3D"</span></span><br></pre></td></tr></table></figure>
-
-<p>編輯 <code>/etc/X11/xorg.conf</code></p>
-<p>添加以下內容</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Section <span class="string">"Module"</span></span><br><span class="line">    Load <span class="string">"modesetting"</span></span><br><span class="line">EndSection</span><br><span class="line"> </span><br><span class="line">Section <span class="string">"Device"</span></span><br><span class="line">    Identifier <span class="string">"nvidia"</span></span><br><span class="line">    Driver <span class="string">"nvidia"</span></span><br><span class="line">    BusID <span class="string">"PCI:1:0:0"</span></span><br><span class="line">    Option <span class="string">"AllowEmptyInitialConfiguration"</span></span><br><span class="line">EndSection</span><br></pre></td></tr></table></figure>
-
-<p>編輯以下文件 <code>/etc/X11/xorg.conf.d/20-intel.conf</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Section <span class="string">"Device"</span></span><br><span class="line">    Identifier <span class="string">"intel"</span></span><br><span class="line">    Driver <span class="string">"modesetting"</span></span><br><span class="line">    BusID <span class="string">"PCI:0:2:0"</span></span><br><span class="line">EndSection</span><br></pre></td></tr></table></figure>
-
-<p>然後貌似要在開始時執行下面這些，但是我忘記是哪裡了</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xrandr --setprovideroutputsource modesetting NVIDIA-0 </span><br><span class="line">xrandr --auto</span><br></pre></td></tr></table></figure>
-
-<p>gdm似乎是要在下面兩個檔案加上這些</p>
-<p><code>/usr/share/gdm/greeter/autostart/optimus.desktop</code></p>
-<p><code>/etc/xdg/autostart/optimus.desktop</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[Desktop Entry]</span><br><span class="line">Type=Application</span><br><span class="line">Name=Optimus</span><br><span class="line">Exec=sh -c <span class="string">"xrandr --setprovideroutputsource modesetting NVIDIA-0; xrandr --auto"</span></span><br><span class="line">NoDisplay=<span class="literal">true</span></span><br><span class="line">X-GNOME-Autostart-Phase=DisplayServer</span><br></pre></td></tr></table></figure>
-
-<p>（請參考<a href="https://wiki.archlinux.org/index.php/NVIDIA_Optimus_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#GDM" target="_blank" rel="noopener">ArchWiKi</a>）</p>
-<p>然後啟用gdm</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> gdm</span><br></pre></td></tr></table></figure>
-
-<p>沒意外的話重起應該就行了。</p>
+        <p>如題，pacman 直接安裝ncdu就行了</p>
+<p>另外也可以用 <code>pacman -Sc</code> 清除緩存文件。</p>
 
       
     </div>
@@ -330,17 +307,11 @@
     <nav id="article-nav">
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/Arch-Newbie-Diary/posts/2019/06/19/安裝顯示卡驅動/">
-                    安裝顯示卡驅動
+                <a href="/Arch-Newbie-Diary/posts/2019/06/21/增加開機音效/">
+                    增加開機音效
                 </a>
             </div>
         
-        
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/Arch-Newbie-Diary/posts/2019/06/19/安裝時間機器/">
-                    安裝時間機器
-                </a>
-            </div>
         
     </nav>
 
@@ -351,7 +322,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目錄</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝套件"><span class="toc-number">1.</span> <span class="toc-text">安裝套件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置顯卡"><span class="toc-number">2.</span> <span class="toc-text">配置顯卡</span></a></li></ol>
+            
         
     </div>
     <style>
@@ -382,15 +353,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/Arch-Newbie-Diary/posts/2019/06/19/安裝時間機器/" title="上一篇: 安裝時間機器">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/Arch-Newbie-Diary/" title="回到主頁"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/Arch-Newbie-Diary/posts/2019/06/19/安裝顯示卡驅動/" title="下一篇: 安裝顯示卡驅動">
+            <a href="/Arch-Newbie-Diary/posts/2019/06/21/增加開機音效/" title="下一篇: 增加開機音效">
                 <i class="fa fa-angle-right"></i>
             </a>
         
